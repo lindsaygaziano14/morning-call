@@ -65,8 +65,12 @@ def make_call():
 
 @app.route("/twiml", methods=["GET", "POST"])
 def twiml():
+    # Use cached briefing if fresh, otherwise regenerate
+    briefing_text = current_briefing["text"]
+    if briefing_text == "Good morning. Your briefing is not ready yet.":
+        briefing_text = generate_briefing()
     response = VoiceResponse()
-    response.say(current_briefing["text"], voice="Polly.Matthew-Neural", language="en-US")
+    response.say(briefing_text, voice="Polly.Matthew-Neural", language="en-US")
     return Response(str(response), mimetype="text/xml")
 
 
