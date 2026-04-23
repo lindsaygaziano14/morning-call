@@ -14,7 +14,7 @@ def generate_briefing():
     ai = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
     response = ai.messages.create(
-        model="claude-sonnet-4-20250514",
+        model="claude-sonnet-4-5",
         max_tokens=1000,
         tools=[{"type": "web_search_20250305", "name": "web_search"}],
         messages=[{
