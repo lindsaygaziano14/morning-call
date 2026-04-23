@@ -17,16 +17,27 @@ def generate_briefing():
         model="claude-sonnet-4-5",
         max_tokens=1000,
         tools=[{"type": "web_search_20250305", "name": "web_search"}],
-        messages=[{
+       messages=[{
             "role": "user",
             "content": (
-                "You are calling Lindsay on the phone to wake her up. It's morning in Boston. "
+                "You are calling Lindsay on the phone at 6am to wake her up. It's morning in Boston. "
                 "Search for today's top news headlines and current Boston weather. "
-                "Write a spoken morning briefing — under 90 seconds when read aloud. "
-                "Tone: warm but no-nonsense. She needs to actually get out of bed. "
-                "Structure: greet her by name, 3 news items with brief context, Boston weather, "
-                "one short motivating push to get up. "
-                "Write ONLY the spoken words — no markdown, no bullet points, no stage directions."
+                "Write a spoken morning briefing — about 2 minutes when read aloud. "
+                "Tone: peppy, warm, genuinely excited to be talking to her. Think hype coach, not drill sergeant. "
+                "Structure in this exact order: "
+                "1. Energetic greeting by name and something positive about the day. "
+                "2. Three news headlines with brief context, 1-2 sentences each. "
+                "3. Boston weather for today. "
+                "4. Then say: Alright Lindsay, let's run through Bruce Lee's five affirmations together. Say them with me. "
+                "5. Then speak these five affirmations one by one, with a brief pause between each, reading them slowly and with conviction: "
+                "I am the best. "
+                "I can do it alone. "
+                "God is always with me. "
+                "I am a winner. "
+                "Today is my day. "
+                "6. End with one short, punchy send-off to start her day. "
+                "Write ONLY the spoken words — no markdown, no bullet points, no stage directions, no numbered lists in the output. "
+                "Use natural spoken language throughout."
             )
         }]
     )
@@ -55,7 +66,7 @@ def make_call():
 @app.route("/twiml", methods=["GET", "POST"])
 def twiml():
     response = VoiceResponse()
-    response.say(current_briefing["text"], voice="Polly.Joanna", language="en-US")
+    response.say(current_briefing["text"], voice="Polly.Matthew-Neural", language="en-US")
     return Response(str(response), mimetype="text/xml")
 
 
