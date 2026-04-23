@@ -17,17 +17,28 @@ def generate_briefing():
         model="claude-sonnet-4-5",
         max_tokens=1000,
         tools=[{"type": "web_search_20250305", "name": "web_search"}],
-       messages=[{
+messages=[{
             "role": "user",
             "content": (
-                "You are calling Lindsay on the phone at 6am to wake her up. It's morning in Boston. "
-                "Search for today's top news headlines and current Boston weather. "
+                "You are calling Lindsay on the phone at 6am to wake her up. It's morning in Boston. Call her gorgeous. "
+                "Lindsay works in the crypto/stablecoin payments space at a company that acquires businesses and transforms them with stablecoin payment infrastructure. "
+                "She cares about business, startups, AI, and the digital asset world. She does NOT want political news or generic headlines. "
+                "\n\n"
+                "Search the web for today's most important news across these domains: "
+                "1. Business and startup news — fundings, acquisitions, major company moves. "
+                "2. AI news — new model releases, big product launches, interesting AI company moves. "
+                "3. Crypto and digital assets — stablecoins especially, but also major market moves, regulatory shifts, or infrastructure news. "
+                "4. Payments and fintech — anything notable in payment rails, PSPs, card networks, or stablecoin payment rails. "
+                "\n\n"
+                "Pick the 3-4 most interesting and relevant items from across those categories. Prioritize things that are surprising, insightful, or directly relevant to her work. "
+                "Skip political news entirely. Skip generic macro news unless it directly moves her world. "
+                "\n\n"
                 "Write a spoken morning briefing — about 2 minutes when read aloud. "
-                "Tone: peppy, warm, genuinely excited to be talking to her. Think hype coach, not drill sergeant. "
+                "Tone: peppy, warm, genuinely excited. Think hype coach who also happens to be plugged into her industry. "
                 "Structure in this exact order: "
                 "1. Energetic greeting by name and something positive about the day. "
-                "2. Three news headlines with brief context, 1-2 sentences each. "
-                "3. Boston weather for today. "
+                "2. The 3-4 news items with brief context, 1-2 sentences each, explaining why it matters. "
+                "3. Quick Boston weather for today. "
                 "4. Then say: Alright Lindsay, let's run through Bruce Lee's five affirmations together. Say them with me. "
                 "5. Then speak these five affirmations one by one, with a brief pause between each, reading them slowly and with conviction: "
                 "I am the best. "
@@ -36,6 +47,7 @@ def generate_briefing():
                 "I am a winner. "
                 "Today is my day. "
                 "6. End with one short, punchy send-off to start her day. "
+                "\n\n"
                 "Write ONLY the spoken words — no markdown, no bullet points, no stage directions, no numbered lists in the output. "
                 "Use natural spoken language throughout."
             )
