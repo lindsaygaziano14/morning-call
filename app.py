@@ -52,7 +52,7 @@ def make_call():
     return call.sid
 
 
-@app.route("/twiml")
+@app.route("/twiml", methods=["GET", "POST"])
 def twiml():
     response = VoiceResponse()
     response.say(current_briefing["text"], voice="Polly.Joanna", language="en-US")
